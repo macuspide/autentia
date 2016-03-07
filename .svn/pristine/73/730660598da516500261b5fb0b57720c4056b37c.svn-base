@@ -1,0 +1,30 @@
+package com.prueba.myapp;
+
+import java.util.List;
+
+import com.prueba.myapp.CursoBean;
+import com.prueba.myapp.CursoMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class CursoService {
+	@Autowired
+	private CursoMapper cursomapper;
+	
+	public List<CursoBean> getAll(){
+		List<CursoBean> beans=cursomapper.getAll();
+		if(beans==null){
+			throw new RuntimeException("Error al ejecutar la consulta");
+		}
+		return beans;
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public void insert(CursoBean cursobean){
+		cursomapper.insert(cursobean);
+	}
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- Aqui conecto con la interface -->
+<mapper namespace="com.prueba.myapp.CursoMapper">
+<!--  
+<resultMap type="curso" id="result">
+<result property="id_curso" column="id_curso"/>
+<result property="titulo" column="titulo"/>
+<result property="id_nivel" column="id_nivel"/>
+<result property="horas" column="horas"/>
+<result property="activo" column="activo"/>
+<result property="id_profesor" column="id_profesor"/>
+</resultMap>
+-->
+	<select id="getAll" resultType="com.prueba.myapp.CursoBean">
+		select * from cursos;
+	</select>
+<!-- 
+	<insert id="insert" parameterType="CursoBean" useGeneratedKeys="true"
+	keyColumn="id_curso" keyProperty="id_curso">
+		insert into cursos
+		(titulo,id_nivel,horas,activo,id_profesor)
+		values
+		(#{titulo},#{id_nivel},#{horas},#{activo},#{id_profesor})
+		<selectKey keyProperty="id_curso" resultType="Integer" order="AFTER">
+			SELECT last_insert_id() as id_curso
+		</selectKey>
+	</insert>
+
+ -->	
+
+</mapper>

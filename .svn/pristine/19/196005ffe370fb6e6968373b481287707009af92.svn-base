@@ -1,0 +1,10 @@
+package com.prueba.myapp;
+
+import java.util.List;
+
+public interface CursoMapper {
+	
+	List<CursoBean> getAll();
+	
+	void insert(CursoBean curso);
+}
