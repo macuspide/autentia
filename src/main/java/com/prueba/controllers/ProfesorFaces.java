@@ -6,23 +6,29 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import com.prueba.beans.ProfesorBean;
+import com.prueba.services.IProfesorService;
 import com.prueba.services.ProfesorService;
 
+@Controller
 @ManagedBean
 @SessionScoped
 public class ProfesorFaces {
 	
 	@ManagedProperty("#{profesorservice}")
-	private ProfesorService profesorservice = new ProfesorService();
+	@Autowired
+	private IProfesorService profesorservice;
 	
 	private ProfesorBean profesorbean = new ProfesorBean();
 
-	public ProfesorService getProfesorservice() {
+	public IProfesorService getIProfesorservice() {
 		return profesorservice;
 	}
 
-	public void setProfesorservice(ProfesorService profesorservice) {
+	public void setIProfesorservice(IProfesorService profesorservice) {
 		this.profesorservice = profesorservice;
 	}
 	public ProfesorBean getProfesorbean() {
