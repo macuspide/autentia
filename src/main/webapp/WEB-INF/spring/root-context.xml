@@ -41,7 +41,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="typeAliasesPackage" value="com.prueba.beans" />
-		<property name="mapperLocations" value="classpath*:com/prueba/mappers/CursoMapper.xml" />
+		<property name="mapperLocations" value="classpath*:com/prueba/mappers/*.xml" />
 	</bean>
 	
 	
@@ -49,6 +49,12 @@
 		<property name="mapperInterface" value="com.prueba.mappers.CursoMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	
+	<bean id="profesorMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.prueba.mappers.ProfesorMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
 	<!-- 
 		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

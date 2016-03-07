@@ -11,7 +11,7 @@ import com.prueba.beans.CursoBean;
 public interface CursoMapper {
 	
 	List<CursoBean> getAll();
-	void insert(CursoBean curso);	
+	void insert(CursoBean cursobean);	
 	@Select("SELECT titulo FROM cursos WHERE horas = #{horas}")
 	String selectTitulo(int horas);	
 	

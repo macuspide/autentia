@@ -11,15 +11,19 @@ public class CursoBean implements Serializable {
 	private int id_nivel;
 	private int horas;
 	private boolean activo;
-	private int id_profesor;
+	private ProfesorBean profesorbean;
 	
-	public CursoBean(int id_curso, String titulo, int id_nivel, int horas, boolean activo, int id_profesor) {
+	public CursoBean(){
+		
+	}
+	
+	public CursoBean(int id_curso, String titulo, int id_nivel, int horas, boolean activo, ProfesorBean profesorbean) {
 		this.id_curso = id_curso;
 		this.titulo = titulo;
 		this.id_nivel = id_nivel;
 		this.horas = horas;
 		this.activo = activo;
-		this.id_profesor = id_profesor;
+		this.profesorbean = profesorbean;
 	}
 
 	public void setId_curso(int id_curso) {
@@ -42,8 +46,8 @@ public class CursoBean implements Serializable {
 		this.activo = activo;
 	}
 
-	public void setId_profesor(int id_profesor) {
-		this.id_profesor = id_profesor;
+	public void setProfesorBean(ProfesorBean profesorbean) {
+		this.profesorbean = profesorbean;
 	}
 
 	public int getId_curso() {
@@ -66,8 +70,8 @@ public class CursoBean implements Serializable {
 		return activo;
 	}
 
-	public int getId_profesor() {
-		return id_profesor;
+	public ProfesorBean getProfesorBean() {
+		return this.profesorbean;
 	}
 	
 	
