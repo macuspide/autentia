@@ -7,12 +7,22 @@
     <script name="jquery/jquery.js" library="primefaces"></script>
     <title>Catalogo de cursos</title>
 </h:head>
+
 <h:form>
-    <p:growl id="messages"></p:growl>
-    <p:panelGrid columns="2">
-    	<p:outputLabel value="Nombre profesor:"></p:outputLabel>
-        <p:inputText value="#{profesorFaces.profesorbean.nombre_profe}"></p:inputText>                     
-    </p:panelGrid>
-    <p:commandButton value="Insertar" action="#{profesorFaces.insert}" update="messages"></p:commandButton>
+    <p:dataTable var="curso" value="#{cursoFaces.cursosLista}" rows="4"
+    					 style="height: 596px;width: 631px"
+                         paginator="true"
+                         paginatorPosition="bottom"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="4,8,12">
+        <p:column headerText="Titulo" sortBy="#{curso.titulo}">
+            <h:outputText value="#{curso.titulo}" />
+        </p:column>
+
+        <p:column headerText="Horas">
+            <h:outputText value="#{curso.horas}" />
+        </p:column>
+    </p:dataTable>
 </h:form>
+
 </html>

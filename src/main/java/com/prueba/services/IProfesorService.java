@@ -9,4 +9,5 @@ public interface IProfesorService {
 	List<ProfesorBean> getAll();
 	void insert(ProfesorBean profesorbean);	
 	String selectNombre(int id_profesor);	
+	ProfesorBean getProfesorPorId(int id_profesor);
 }

@@ -1,18 +1,37 @@
 package com.prueba.mappers;
 
 import java.util.List;
-
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.One;
 
 import com.prueba.beans.CursoBean;
+import com.prueba.beans.ProfesorBean;
 
 public interface CursoMapper {
 	
+	@Select("SELECT * FROM cursos")
+	@Results(value ={
+        @Result(property = "id_curso", column = "id_curso", id = true),
+        @Result(property = "titulo", column = "titulo"),
+        @Result(property = "id_nivel", column = "id_nivel"),
+        @Result(property = "horas", column = "horas"),
+        @Result(property = "activo", column = "activo"),
+        @Result(property = "profesorbean", column = "id_profesor", javaType=ProfesorBean.class, one=@One(select="getProfesorPorId"))
+        //@Result(property = "id_profesor", column = "id_profesor", javaType=ProfesorBean.class, one=@One(select="com.prueba.services.IProfesorService.getProfesorPorId"))
+      })
+	@Options(useCache=true)
 	List<CursoBean> getAll();
-	void insert(CursoBean cursobean);	
+
+	void insert(CursoBean cursobean);
+
 	@Select("SELECT titulo FROM cursos WHERE horas = #{horas}")
-	String selectTitulo(int horas);	
+	String selectTitulo(int horas);
 	
+	@Select("SELECT id_profesor, nombre_profe FROM profesores WHERE id_profesor = #{id_profesor}")
+	ProfesorBean getProfesorPorId(int id_profesor);
+
 }

@@ -13,6 +13,7 @@ import com.prueba.beans.ProfesorBean;
 public interface ProfesorMapper {
 	
 	@Results({
+		@Result(property = "id_profesor", column = "id_profesor"),
         @Result(property = "nombre_profe", column = "nombre_profe")
       })	
 	
@@ -21,5 +22,7 @@ public interface ProfesorMapper {
 	@Options(useGeneratedKeys = true, keyProperty = "id_profesor", flushCache = true, keyColumn = "id_profesor")
 	void insert(ProfesorBean profesorbean);	
 	@Select("SELECT nombre_profe FROM profesores WHERE id_profesor = #{id_profesor}")
-	String selectNombre(int id_profesor);	
+	String selectNombre(int id_profesor);
+	@Select("SELECT id_profesor, nombre_profe FROM profesores WHERE id_profesor = #{id_profesor}")
+	ProfesorBean getProfesorPorId(int id_profesor);
 }

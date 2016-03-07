@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class CursoService {
+public class CursoService implements ICursoService{
 	@Autowired
 	private CursoMapper cursoMapper;
 	
@@ -27,11 +27,9 @@ public class CursoService {
 	}
 
 	public String selectTitulo(int horas){
-		//String titulo= "hola";
+		
 		String titulo=cursoMapper.selectTitulo(horas);
-		//cursoMapper = sqlSession.getMapper(CursoMapper.class);
-		//String titulo = cursoMapper.selectTitulo(horas);
-		//String titulo=sqlSession.selectOne("cursoDao.selectTitulo",horas);
+		
 		if(titulo==null){
 			throw new RuntimeException("Error al ejecutar la consulta");
 		}

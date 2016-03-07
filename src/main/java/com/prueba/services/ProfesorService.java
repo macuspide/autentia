@@ -48,6 +48,14 @@ public class ProfesorService implements IProfesorService {
 		profesorMapper.insert(profesorbean);
 	}
 	
+	public ProfesorBean getProfesorPorId(int id_profesor){
+		ProfesorBean profesorbean = profesorMapper.getProfesorPorId(id_profesor);
+		if(profesorbean==null){
+			throw new RuntimeException("Error al ejecutar la consulta");
+		}
+		return profesorbean;
+	}
+	
 	public String selectNombre(int id_profesor){
 		String nombre_profe=profesorMapper.selectNombre(id_profesor);
 		if(nombre_profe==null){
