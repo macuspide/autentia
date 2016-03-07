@@ -10,11 +10,14 @@
 
 <h:form>
     <p:dataTable var="curso" value="#{cursoFaces.cursosLista}" rows="4"
-    					 style="height: 596px;width: 631px"
+    					 style="width: 631px"
                          paginator="true"
                          paginatorPosition="bottom"
                          paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                          rowsPerPageTemplate="4,8,12">
+        <f:facet name="header">
+            Catalogo de Cursos
+        </f:facet>
         <p:column headerText="Titulo" sortBy="#{curso.titulo}">
             <h:outputText value="#{curso.titulo}" />
         </p:column>
@@ -28,5 +31,6 @@
         </p:column>
     </p:dataTable>
 </h:form>
+<p:button value="Nuevo Curso" outcome="index" />
 
 </html>
