@@ -48,4 +48,12 @@ public class CursoService implements ICursoService{
 	public void insert(CursoBean cursobean){
 		cursoMapper.insert(cursobean);
 	}
+	
+	public String getNivel(int id_nivel){
+		String nivel=cursoMapper.getNivel(id_nivel);
+		if(nivel==null){
+			throw new RuntimeException("Error al ejecutar la consulta");
+		}
+		return nivel;
+	}
 }

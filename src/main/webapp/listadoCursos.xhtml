@@ -13,10 +13,14 @@
     					 style="height: 596px;width: 631px"
                          paginator="true"
                          paginatorPosition="bottom"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                          rowsPerPageTemplate="4,8,12">
         <p:column headerText="Titulo" sortBy="#{curso.titulo}">
             <h:outputText value="#{curso.titulo}" />
+        </p:column>
+
+        <p:column headerText="Nivel">
+            <h:outputText value="#{curso.nivel}" />
         </p:column>
 
         <p:column headerText="Horas">

@@ -17,7 +17,7 @@ public interface CursoMapper {
 	@Results(value ={
         @Result(property = "id_curso", column = "id_curso", id = true),
         @Result(property = "titulo", column = "titulo"),
-        @Result(property = "id_nivel", column = "id_nivel"),
+        @Result(property = "nivel", column = "id_nivel", javaType=String.class, one=@One(select="getNivel")),
         @Result(property = "horas", column = "horas"),
         @Result(property = "activo", column = "activo"),
         @Result(property = "profesorbean", column = "id_profesor", javaType=ProfesorBean.class, one=@One(select="getProfesorPorId"))
@@ -33,5 +33,7 @@ public interface CursoMapper {
 	
 	@Select("SELECT id_profesor, nombre_profe FROM profesores WHERE id_profesor = #{id_profesor}")
 	ProfesorBean getProfesorPorId(int id_profesor);
-
+	
+	@Select("Select n.nombre_nivel from nivel n where n.id_nivel=#{id_nivel}")
+	String getNivel(int id_nivel);
 }

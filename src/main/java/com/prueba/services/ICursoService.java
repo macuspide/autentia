@@ -11,4 +11,5 @@ public interface ICursoService {
 	List<CursoBean> getAll();
 	void insert(CursoBean curso);
 	String selectTitulo(int horas);
+	String getNivel(int id_nivel);
 }
