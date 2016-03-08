@@ -22,6 +22,7 @@
         <p:outputLabel value="Titulo:"></p:outputLabel>
         <p:inputText value="#{cursobeanseleccionado.titulo}"></p:inputText>
         
+        <p:outputLabel for="nivel" value="Nivel:" />
         <p:selectOneMenu id="nivel" value="#{cursoFaces.nivelbeanseleccionado}" style="width:125px">
             <f:selectItem itemLabel="Selecciona un nivel" itemValue="" />
             <f:selectItems value="#{cursoFaces.nivelesLista}" var="nivelbean" itemLabel="#{nivelbean.nombre_nivel}" itemValue="#{nivelbean.id_nivel}"/>
