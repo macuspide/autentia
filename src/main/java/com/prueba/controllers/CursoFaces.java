@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.prueba.beans.CursoBean;
-import com.prueba.services.CursoService;
+import com.prueba.beans.NivelBean;
 import com.prueba.services.ICursoService;
 
 @Controller
@@ -22,12 +22,32 @@ import com.prueba.services.ICursoService;
 @SessionScoped
 public class CursoFaces implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
 	@ManagedProperty("#{cursoservice}")
 	@Autowired
 	private ICursoService cursoservice;
 
 	private CursoBean cursobeanseleccionado;
+	private NivelBean nivelbeanseleccionado;
 	private List<CursoBean> cursosLista;
+	private List<NivelBean> nivelesLista;
+	
+	public NivelBean getNivelbeanseleccionado() {
+		return nivelbeanseleccionado;
+	}
+
+	public void setNivelbeanseleccionado(NivelBean nivelbeanseleccionado) {
+		this.nivelbeanseleccionado = nivelbeanseleccionado;
+	}
+
+	public List<NivelBean> getNivelesLista() {
+		return nivelesLista;
+	}
+
+	public void setNivelesLista(List<NivelBean> nivelesLista) {
+		this.nivelesLista = nivelesLista;
+	}
 
 	public List<CursoBean> getCursosLista() {
 		return cursosLista;
@@ -62,11 +82,14 @@ public class CursoFaces implements Serializable{
 	@PostConstruct
 	public void init() {
 		cursosLista = cursoservice.getAll();
+		nivelesLista = cursoservice.getAllNiveles();
 	}
 
 	public List<CursoBean> getAll() {
 		
 		return cursosLista;
 	}
+	
+	
 
 }

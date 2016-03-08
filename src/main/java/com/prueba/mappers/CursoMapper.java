@@ -1,18 +1,25 @@
 package com.prueba.mappers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.One;
 
+import com.prueba.beans.NivelBean;
 import com.prueba.beans.CursoBean;
 import com.prueba.beans.ProfesorBean;
 
 public interface CursoMapper {
-	
+	 
 	@Select("SELECT * FROM cursos")
 	@Results(value ={
         @Result(property = "id_curso", column = "id_curso", id = true),
@@ -36,4 +43,14 @@ public interface CursoMapper {
 	
 	@Select("Select n.nombre_nivel from nivel n where n.id_nivel=#{id_nivel}")
 	String getNivel(int id_nivel);
+	
+	
+
+	@Select("Select id_nivel, nombre_nivel from nivel")
+	@Results(value ={
+	        @Result(property = "id_nivel", column = "id_nivel", id = true),
+	        @Result(property = "nombre_nivel", column = "nombre_nivel"),
+	})
+	@Options(useCache=true)
+	List<NivelBean> getAllNiveles();
 }

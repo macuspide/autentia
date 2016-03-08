@@ -36,6 +36,10 @@ public class ProfesorBean implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	 @Override
+	    public String toString() {
+	        return nombre_profe;
+	    }
 
 	
 	

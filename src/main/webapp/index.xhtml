@@ -12,14 +12,23 @@
     <p:panelGrid columns="2">
     	<p:outputLabel value="Activo:"></p:outputLabel>
         <p:selectBooleanCheckbox  value="#{cursoFaces.cursobean.activo}"></p:selectBooleanCheckbox >
-        <p:outputLabel value="Profesor:"></p:outputLabel>
-        <p:inputText value="#{cursoFaces.cursobean.id_profesor}"></p:inputText>
+        
+        <p:outputLabel for="profesor" value="Profesor:" />
+        <p:selectOneMenu id="profesor" value="#{profesorFaces.profesorbean}"  style="width:125px">
+            <f:selectItem itemLabel="Selecciona un item" itemValue="" />
+            <f:selectItems value="#{profesorFaces.profesorLista}" var="profesorbean" itemLabel="#{profesorbean.nombre_profe}" itemValue="#{profesorbean.id_profesor}"/>
+         </p:selectOneMenu>
+        
         <p:outputLabel value="Titulo:"></p:outputLabel>
-        <p:inputText value="#{cursoFaces.cursobean.titulo}"></p:inputText>
-        <p:outputLabel value="Nivel:"></p:outputLabel>
-        <p:inputText value="#{cursoFaces.cursobean.id_nivel}"></p:inputText>
+        <p:inputText value="#{cursobeanseleccionado.titulo}"></p:inputText>
+        
+        <p:selectOneMenu id="nivel" value="#{cursoFaces.nivelbeanseleccionado}" style="width:125px">
+            <f:selectItem itemLabel="Selecciona un nivel" itemValue="" />
+            <f:selectItems value="#{cursoFaces.nivelesLista}" var="nivelbean" itemLabel="#{nivelbean.nombre_nivel}" itemValue="#{nivelbean.id_nivel}"/>
+         </p:selectOneMenu>
+         
         <p:outputLabel value="Numero de horas:"></p:outputLabel>
-        <p:inputText value="#{cursoFaces.cursobean.horas}"></p:inputText>                     
+        <p:inputText value="#{cursobeanseleccionado.horas}"></p:inputText>                     
     </p:panelGrid>
     <p:commandButton value="Insertar" action="#{cursoFaces.insert}" update="messages"></p:commandButton>
 </h:form>

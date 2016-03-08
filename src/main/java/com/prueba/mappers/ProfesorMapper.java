@@ -17,6 +17,7 @@ public interface ProfesorMapper {
         @Result(property = "nombre_profe", column = "nombre_profe")
       })	
 	
+	@Select("SELECT id_profesor, nombre_profe FROM profesores")
 	List<ProfesorBean> getAll();
 	@Insert("INSERT into profesores(nombre_profe) VALUES(#{nombre_profe})")
 	@Options(useGeneratedKeys = true, keyProperty = "id_profesor", flushCache = true, keyColumn = "id_profesor")

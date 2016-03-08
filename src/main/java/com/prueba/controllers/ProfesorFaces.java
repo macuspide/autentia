@@ -1,5 +1,9 @@
 package com.prueba.controllers;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -9,6 +13,7 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.prueba.beans.CursoBean;
 import com.prueba.beans.ProfesorBean;
 import com.prueba.services.IProfesorService;
 import com.prueba.services.ProfesorService;
@@ -16,13 +21,24 @@ import com.prueba.services.ProfesorService;
 @Controller
 @ManagedBean
 @SessionScoped
-public class ProfesorFaces {
+public class ProfesorFaces implements Serializable{
+	
 	
 	@ManagedProperty("#{profesorservice}")
 	@Autowired
 	private IProfesorService profesorservice;
 	
-	private ProfesorBean profesorbean = new ProfesorBean();
+	private ProfesorBean profesorbean;
+	private List<ProfesorBean> profesorLista;
+	
+
+	public List<ProfesorBean> getProfesorLista() {
+		return profesorLista;
+	}
+
+	public void setProfesorLista(List<ProfesorBean> profesorLista) {
+		this.profesorLista = profesorLista;
+	}
 
 	public IProfesorService getIProfesorservice() {
 		return profesorservice;
@@ -37,7 +53,10 @@ public class ProfesorFaces {
 	public void setProfesorbean(ProfesorBean profesorbean) {
 		this.profesorbean = profesorbean;
 	}
-	
+	@PostConstruct
+	public void init(){
+		profesorLista = profesorservice.getAll();
+	}
 	public String selectNombre(){
 		String nombre_profe=profesorservice.selectNombre(1);
 		
