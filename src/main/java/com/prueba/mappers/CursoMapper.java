@@ -24,7 +24,7 @@ public interface CursoMapper {
 	@Results(value ={
         @Result(property = "id_curso", column = "id_curso", id = true),
         @Result(property = "titulo", column = "titulo"),
-        @Result(property = "nivel", column = "id_nivel", javaType=String.class, one=@One(select="getNivel")),
+        @Result(property = "nivelbean", column = "id_nivel", javaType=NivelBean.class, one=@One(select="com.prueba.mappers.NivelMapper.getNivel")),
         @Result(property = "horas", column = "horas"),
         @Result(property = "activo", column = "activo"),
         @Result(property = "profesorbean", column = "id_profesor", javaType=ProfesorBean.class, one=@One(select="getProfesorPorId"))
@@ -33,6 +33,8 @@ public interface CursoMapper {
 	@Options(useCache=true)
 	List<CursoBean> getAll();
 
+	//@Insert("Insert into cursos (titulo, id_nivel, horas, activo, id_profesor) values (#{titulo},#{id_nivel},#{horas},#{activo},#{id_profesor})")
+	//@Options(useGeneratedKeys = true, keyProperty = "id", flushCache=true)
 	void insert(CursoBean cursobean);
 
 	@Select("SELECT titulo FROM cursos WHERE horas = #{horas}")
@@ -41,16 +43,5 @@ public interface CursoMapper {
 	@Select("SELECT id_profesor, nombre_profe FROM profesores WHERE id_profesor = #{id_profesor}")
 	ProfesorBean getProfesorPorId(int id_profesor);
 	
-	@Select("Select n.nombre_nivel from nivel n where n.id_nivel=#{id_nivel}")
-	String getNivel(int id_nivel);
-	
-	
 
-	@Select("Select id_nivel, nombre_nivel from nivel")
-	@Results(value ={
-	        @Result(property = "id_nivel", column = "id_nivel", id = true),
-	        @Result(property = "nombre_nivel", column = "nombre_nivel"),
-	})
-	@Options(useCache=true)
-	List<NivelBean> getAllNiveles();
 }

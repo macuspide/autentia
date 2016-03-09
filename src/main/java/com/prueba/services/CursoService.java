@@ -1,11 +1,7 @@
 package com.prueba.services;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import com.prueba.beans.CursoBean;
-import com.prueba.beans.NivelBean;
 import com.prueba.mappers.CursoMapper;
 
 import org.apache.ibatis.session.SqlSession;
@@ -50,22 +46,6 @@ public class CursoService implements ICursoService{
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void insert(CursoBean cursobean){
 		cursoMapper.insert(cursobean);
-	}
-	
-	public String getNivel(int id_nivel){
-		String nivel=cursoMapper.getNivel(id_nivel);
-		if(nivel==null){
-			throw new RuntimeException("Error al ejecutar la consulta");
-		}
-		return nivel;
-	}
-
-	public List<NivelBean> getAllNiveles(){
-		List<NivelBean> niveles=cursoMapper.getAllNiveles();
-		if(niveles==null){
-			throw new RuntimeException("Error al ejecutar la consulta");
-		}
-		return niveles;
 	}
 	
 }
