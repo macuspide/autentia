@@ -17,8 +17,7 @@ public class CursoBean implements Serializable {
 		
 	}
 	
-	public CursoBean(int id_curso, String titulo, NivelBean nivelbean, int horas, boolean activo, ProfesorBean profesorbean) {
-		this.id_curso = id_curso;
+	public CursoBean(String titulo, NivelBean nivelbean, int horas, boolean activo, ProfesorBean profesorbean) {
 		this.titulo = titulo;
 		this.nivelbean = nivelbean;
 		this.horas = horas;

@@ -24,7 +24,7 @@ public class CursoFaces implements Serializable{
 	@Autowired
 	private ICursoService cursoservice;
 
-	private CursoBean cursobeanseleccionado;
+	private CursoBean cursobean=new CursoBean();
 	private List<CursoBean> cursosLista;
 
 	
@@ -41,11 +41,11 @@ public class CursoFaces implements Serializable{
 	}
 
 	public CursoBean getCursobean() {
-		return cursobeanseleccionado;
+		return cursobean;
 	}
 
 	public void setCursobean(CursoBean cursobean) {
-		this.cursobeanseleccionado = cursobean;
+		this.cursobean = cursobean;
 	}
 
 	public String selectTitulo() {
@@ -55,7 +55,7 @@ public class CursoFaces implements Serializable{
 	}
 
 	public void insert() {
-		cursoservice.insert(cursobeanseleccionado);
+		this.cursoservice.insert(cursobean);
 	}
 
 	@PostConstruct

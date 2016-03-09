@@ -25,7 +25,7 @@ public class NivelFaces implements Serializable{
 	@Autowired
 	private INivelService nivelservice;
 	
-	private NivelBean nivelbeanseleccionado;
+	private NivelBean nivelbean;
 	private List<NivelBean> nivelesLista;
 	
 	
@@ -38,12 +38,12 @@ public class NivelFaces implements Serializable{
 		this.nivelservice = nivelservice;
 	}
 
-	public NivelBean getNivelbeanseleccionado() {
-		return nivelbeanseleccionado;
+	public NivelBean getNivelbean() {
+		return nivelbean;
 	}
 
-	public void setNivelbeanseleccionado(NivelBean nivelbeanseleccionado) {
-		this.nivelbeanseleccionado = nivelbeanseleccionado;
+	public void setNivelbean(NivelBean nivelbean) {
+		this.nivelbean = nivelbean;
 	}
 
 	public List<NivelBean> getNivelesLista() {
@@ -55,8 +55,8 @@ public class NivelFaces implements Serializable{
 	}
 
 	public NivelBean getNivel(int id_nivel){
-		nivelbeanseleccionado = nivelservice.getNivel(id_nivel);
-		return nivelbeanseleccionado;
+		nivelbean = nivelservice.getNivel(id_nivel);
+		return nivelbean;
 	}
 	
 	public List<NivelBean> getAllNiveles(){

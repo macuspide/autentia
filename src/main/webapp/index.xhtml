@@ -19,17 +19,17 @@
             <f:selectItems value="#{profesorFaces.profesorLista}" var="profesorbean" itemLabel="#{profesorbean.nombre_profe}" itemValue="#{profesorbean.id_profesor}"/>
          </p:selectOneMenu>
         
-        <p:outputLabel value="Titulo:"></p:outputLabel>
-        <p:inputText value="#{cursobeanseleccionado.titulo}"></p:inputText>
+        <p:outputLabel for="titulo" value="Titulo:"></p:outputLabel>
+        <p:inputText id="titulo" value="#{cursoFaces.cursobean.titulo}"></p:inputText>
         
         <p:outputLabel for="nivel" value="Nivel:" />
-        <p:selectOneMenu id="nivel" value="#{nivelFaces.nivelbeanseleccionado}" style="width:125px">
+        <p:selectOneMenu id="nivel" value="#{nivelFaces.nivelbean}" style="width:125px">
             <f:selectItem itemLabel="Selecciona un nivel" itemValue="" />
             <f:selectItems value="#{nivelFaces.nivelesLista}" var="nivelbean" itemLabel="#{nivelbean.nombre_nivel}" itemValue="#{nivelbean.id_nivel}"/>
          </p:selectOneMenu>
          
-        <p:outputLabel value="Numero de horas:"></p:outputLabel>
-        <p:inputText value="#{cursobeanseleccionado.horas}"></p:inputText>                     
+        <p:outputLabel for="horas" value="Numero de horas:"></p:outputLabel>
+        <p:inputText id="horas" value="#{cursoFaces.cursobean.horas}"></p:inputText>                     
     </p:panelGrid>
     <p:commandButton value="Insertar" action="#{cursoFaces.insert}" update="messages"></p:commandButton>
 </h:form>

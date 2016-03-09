@@ -33,8 +33,8 @@ public interface CursoMapper {
 	@Options(useCache=true)
 	List<CursoBean> getAll();
 
-	//@Insert("Insert into cursos (titulo, id_nivel, horas, activo, id_profesor) values (#{titulo},#{id_nivel},#{horas},#{activo},#{id_profesor})")
-	//@Options(useGeneratedKeys = true, keyProperty = "id", flushCache=true)
+	@Insert("Insert into cursos (titulo, id_nivel, horas, activo, id_profesor) values (#{titulo},#{id_nivel},#{horas},#{activo},#{id_profesor})")
+	@Options(useGeneratedKeys = true, keyProperty = "id_curso", flushCache=true, keyColumn = "id_curso")
 	void insert(CursoBean cursobean);
 
 	@Select("SELECT titulo FROM cursos WHERE horas = #{horas}")
