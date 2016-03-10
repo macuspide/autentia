@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.prueba.beans.CursoBean;
+import com.prueba.beans.ProfesorBean;
 import com.prueba.services.ICursoService;
+import com.prueba.services.IProfesorService;
+import com.prueba.controllers.ProfesorFaces;
 
 @Controller
 @ManagedBean
@@ -24,8 +27,51 @@ public class CursoFaces implements Serializable{
 	@Autowired
 	private ICursoService cursoservice;
 
+	@ManagedProperty("#{profesorservice}")
+	@Autowired
+	private IProfesorService profesorservice;
+	
+	private ProfesorBean profesorbean;
+	private List<ProfesorBean> profesorLista;
+	
 	private CursoBean cursobean=new CursoBean();
 	private List<CursoBean> cursosLista;
+	
+	
+	
+	
+	
+	
+
+	public List<ProfesorBean> getProfesorLista() {
+		return profesorLista;
+	}
+
+	public void setProfesorLista(List<ProfesorBean> profesorLista) {
+		this.profesorLista = profesorLista;
+	}
+
+	public IProfesorService getIProfesorservice() {
+		return profesorservice;
+	}
+
+	public void setIProfesorservice(IProfesorService profesorservice) {
+		this.profesorservice = profesorservice;
+	}
+	public ProfesorBean getProfesorbean() {
+		return profesorbean;
+	}
+	public void setProfesorbean(ProfesorBean profesorbean) {
+		this.profesorbean = profesorbean;
+	}
+
+	
+	
+	
+	
+	
+	
+	
 
 	
 	public List<CursoBean> getCursosLista() {
@@ -45,6 +91,9 @@ public class CursoFaces implements Serializable{
 	}
 
 	public void setCursobean(CursoBean cursobean) {
+		
+		cursobean.setProfesorBean(profesorbean);
+		cursobean.setId_profesor(profesorbean.getId_profesor());
 		this.cursobean = cursobean;
 	}
 
@@ -60,6 +109,7 @@ public class CursoFaces implements Serializable{
 
 	@PostConstruct
 	public void init() {
+		profesorLista = profesorservice.getAll();
 		cursosLista = cursoservice.getAll();
 	}
 

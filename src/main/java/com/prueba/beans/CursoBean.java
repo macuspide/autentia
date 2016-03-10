@@ -8,21 +8,41 @@ public class CursoBean implements Serializable {
 	
 	private int id_curso;
 	private String titulo;
+	private int id_nivel;
 	private NivelBean nivelbean;
 	private int horas;
 	private boolean activo;
+	private int id_profesor;
 	private ProfesorBean profesorbean;
 	
 	public CursoBean(){
 		
 	}
 	
-	public CursoBean(String titulo, NivelBean nivelbean, int horas, boolean activo, ProfesorBean profesorbean) {
+	public CursoBean(String titulo, int id_nivel,NivelBean nivelbean, int horas, boolean activo, int id_profesor,ProfesorBean profesorbean) {
 		this.titulo = titulo;
+		this.id_nivel=id_nivel;
 		this.nivelbean = nivelbean;
 		this.horas = horas;
 		this.activo = activo;
+		this.id_profesor=id_profesor;
 		this.profesorbean = profesorbean;
+	}
+
+	public int getId_nivel() {
+		return id_nivel;
+	}
+
+	public void setId_nivel(int id_nivel) {
+		this.id_nivel = id_nivel;
+	}
+
+	public int getId_profesor() {
+		return id_profesor;
+	}
+
+	public void setId_profesor(int id_profesor) {
+		this.id_profesor = id_profesor;
 	}
 
 	public void setNivelbean(NivelBean nivelbean) {
@@ -73,5 +93,9 @@ public class CursoBean implements Serializable {
 		return this.profesorbean;
 	}
 	
+    @Override
+    public String toString() {
+        return String.format("CursoBean", id_curso, titulo, nivelbean, horas, activo, profesorbean);
+    }
 	
 }

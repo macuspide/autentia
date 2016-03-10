@@ -13,24 +13,55 @@
     	<p:outputLabel value="Activo:"></p:outputLabel>
         <p:selectBooleanCheckbox  value="#{cursoFaces.cursobean.activo}"></p:selectBooleanCheckbox >
         
-        <p:outputLabel for="profesor" value="Profesor:" />
-        <p:selectOneMenu id="profesor" value="#{profesorFaces.profesorbean}"  style="width:125px">
-            <f:selectItem itemLabel="Selecciona un item" itemValue="" />
-            <f:selectItems value="#{profesorFaces.profesorLista}" var="profesorbean" itemLabel="#{profesorbean.nombre_profe}" itemValue="#{profesorbean.id_profesor}"/>
-         </p:selectOneMenu>
+
         
         <p:outputLabel for="titulo" value="Titulo:"></p:outputLabel>
         <p:inputText id="titulo" value="#{cursoFaces.cursobean.titulo}"></p:inputText>
-        
-        <p:outputLabel for="nivel" value="Nivel:" />
-        <p:selectOneMenu id="nivel" value="#{nivelFaces.nivelbean}" style="width:125px">
-            <f:selectItem itemLabel="Selecciona un nivel" itemValue="" />
-            <f:selectItems value="#{nivelFaces.nivelesLista}" var="nivelbean" itemLabel="#{nivelbean.nombre_nivel}" itemValue="#{nivelbean.id_nivel}"/>
+
+
+        <p:outputLabel for="profesor" value="Profesor:" />
+        <p:selectOneMenu id="profesor" value="#{cursoFaces.profesorbean}"  style="width:125px" converter="profeConverter">
+            <f:selectItem itemLabel="Selecciona un item" itemValue="" />
+            <f:selectItems value="#{cursoFaces.profesorLista}" var="profesorbean" itemLabel="#{profesorbean.nombre_profe}" itemValue="#{profesorbean}"/>
          </p:selectOneMenu>
+
+
+        <p:outputLabel for="nivel" value="nivel"></p:outputLabel>
+        <p:inputText id="nivel" value="#{cursoFaces.cursobean.id_nivel}"></p:inputText>
+        
+        <!-- 
+        
+        		<p:outputLabel for="nivel" value="Nivel:" />
+        <p:selectOneMenu id="nivel" value="#{nivelFaces.nivelbean}" style="width:125px" converter="nivelcon">
+            <f:selectItem itemLabel="Selecciona un nivel" itemValue="" />
+            <f:selectItems value="#{nivelFaces.nivelesLista}" var="nivel" itemLabel="#{nivel.nombre_nivel}" itemValue="#{nivel}"/>
+         </p:selectOneMenu>
+        
+         -->
+
+
+
          
         <p:outputLabel for="horas" value="Numero de horas:"></p:outputLabel>
         <p:inputText id="horas" value="#{cursoFaces.cursobean.horas}"></p:inputText>                     
     </p:panelGrid>
-    <p:commandButton value="Insertar" action="#{cursoFaces.insert}" update="messages"></p:commandButton>
+    <p:commandButton value="Insertar"  action="#{cursoFaces.insert}" update="display" oncomplete="PF('dlg').show()"></p:commandButton>
+    
+    
+    
+    
+       <p:dialog header="Values" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
+        <p:panelGrid columns="2" id="display" columnClasses="label,value">
+ 
+            <h:outputText value="Profesor:" />
+            <h:outputText value="#{cursoFaces.profesorbean.nombre_profe}" />
+                        <h:outputText value="Titulo:" />
+            <h:outputText value="#{cursoFaces.cursobean.titulo}" />
+        </p:panelGrid>
+    </p:dialog>
 </h:form>
+
+
+
+
 </html>

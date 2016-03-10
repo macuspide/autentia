@@ -3,17 +3,18 @@ package com.prueba.beans;
 import java.io.Serializable;
 
 public class ProfesorBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 6321792448424424931L;
-	
+
 	private int id_profesor;
 	private String nombre_profe;
-	
+
 	public ProfesorBean() {
 	}
-	
-	public ProfesorBean(String nombre_profe) {
+
+	public ProfesorBean(int id_profesor, String nombre_profe) {
 		super();
+		this.id_profesor=id_profesor;
 		this.nombre_profe = nombre_profe;
 	}
 
@@ -36,12 +37,28 @@ public class ProfesorBean implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	 @Override
-	    public String toString() {
-	        return nombre_profe;
-	    }
 
+	@Override
+	public String toString() {
+		return String.format("ProfesorBean", id_profesor, nombre_profe);
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof ProfesorBean)) {
+			return false;
+		}
+		ProfesorBean recibido = (ProfesorBean) object;
+		if ((this.id_profesor == 0 && recibido.id_profesor != 0)
+				|| (this.id_profesor != 0 && !(this.id_profesor == recibido.id_profesor))) {
+			return false;
+		}
+		return true;
+	}
 	
-	
+	@Override
+	public int hashCode(){
+	    return (int) id_profesor;
+	  }
+
 }
-
