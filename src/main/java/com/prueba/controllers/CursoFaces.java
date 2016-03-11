@@ -91,9 +91,6 @@ public class CursoFaces implements Serializable{
 	}
 
 	public void setCursobean(CursoBean cursobean) {
-		
-		cursobean.setProfesorBean(profesorbean);
-		cursobean.setId_profesor(profesorbean.getId_profesor());
 		this.cursobean = cursobean;
 	}
 
@@ -104,6 +101,8 @@ public class CursoFaces implements Serializable{
 	}
 
 	public void insert() {
+		cursobean.setProfesorBean(profesorbean);
+		cursobean.setId_profesor(profesorbean.getId_profesor());
 		this.cursoservice.insert(cursobean);
 	}
 

@@ -19,11 +19,14 @@ public interface ProfesorMapper {
 	
 	@Select("SELECT id_profesor, nombre_profe FROM profesores")
 	List<ProfesorBean> getAll();
+	
 	@Insert("INSERT into profesores(nombre_profe) VALUES(#{nombre_profe})")
 	@Options(useGeneratedKeys = true, keyProperty = "id_profesor", flushCache = true, keyColumn = "id_profesor")
 	void insert(ProfesorBean profesorbean);	
+	
 	@Select("SELECT nombre_profe FROM profesores WHERE id_profesor = #{id_profesor}")
 	String selectNombre(int id_profesor);
+	
 	@Select("SELECT id_profesor, nombre_profe FROM profesores WHERE id_profesor = #{id_profesor}")
 	ProfesorBean getProfesorPorId(int id_profesor);
 }
