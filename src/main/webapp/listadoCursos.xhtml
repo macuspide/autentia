@@ -1,36 +1,81 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <script name="jquery/jquery.js" library="primefaces"></script>
-    <title>Catalogo de cursos</title>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+	<title>Catalogo de cursos</title>
+	<h:outputStylesheet name="css/listado.css" />
 </h:head>
 
-<h:form>
-    <p:dataTable var="curso" value="#{cursoFaces.cursosLista}" rows="4"
-    					 style="width: 631px"
-                         paginator="true"
-                         paginatorPosition="bottom"
-                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                         rowsPerPageTemplate="4,8,12">
-        <f:facet name="header">
+<h:form id="tablacursos">
+	<p:dataTable var="curso" value="#{cursoFaces.cursosLista}" rows="4"
+		style="width: 631px" paginator="true" paginatorPosition="bottom"
+		rowIndexVar="rowIndex"
+		rowStyleClass="#{(rowIndex mod 2) eq 0 ? 'highlight1' : 'highlight2'}"
+		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+		rowsPerPageTemplate="4,8,12">
+		<f:facet name="header">
             Catalogo de Cursos
         </f:facet>
-        <p:column headerText="Titulo" sortBy="#{curso.titulo}">
-            <h:outputText value="#{curso.titulo}" />
-        </p:column>
 
-        <p:column headerText="Nivel">
-            <h:outputText value="#{curso.nivelbean.nombre_nivel}" />
-        </p:column>
 
-        <p:column headerText="Horas">
-            <h:outputText value="#{curso.horas}" />
-        </p:column>
-    </p:dataTable>
+		<p:column headerText="Titulo" sortBy="#{curso.titulo}">
+			<h:outputText value="#{curso.titulo}"
+				rendered="#{curso.activo == true}" />
+		</p:column>
+
+		<p:column headerText="Nivel">
+			<h:outputText value="#{curso.nivelbean.nombre_nivel}"
+				rendered="#{curso.activo == true}" />
+		</p:column>
+
+		<p:column headerText="Horas">
+			<h:outputText value="#{curso.horas}"
+				rendered="#{curso.activo == true}" />
+		</p:column>
+
+	</p:dataTable>
 </h:form>
-<p:button value="Nuevo Curso" outcome="index" />
+<p:button value="Nuevo Curso" onclick="PF('dlg').show();return false;" />
+
+
+
+<p:dialog header="Insertar curso:" 
+	widgetVar="dlg" resizable="false">
+	<h:form>
+		<p:growl id="messages"></p:growl>
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Activo:"></p:outputLabel>
+			<p:selectBooleanCheckbox value="#{cursoFaces.cursobean.activo}"></p:selectBooleanCheckbox>
+
+			<p:outputLabel for="titulo" value="Titulo:"></p:outputLabel>
+			<p:inputText id="titulo" value="#{cursoFaces.cursobean.titulo}"></p:inputText>
+
+			<p:outputLabel for="profesor" value="Profesor:" />
+			<p:selectOneMenu id="profesor" value="#{cursoFaces.profesorbean}"
+				style="width:125px" converter="#{profeConverter}">
+				<f:selectItems value="#{cursoFaces.profesorLista}"
+					var="profesorbean" itemLabel="#{profesorbean.nombre_profe}"
+					itemValue="#{profesorbean}" />
+			</p:selectOneMenu>
+
+			<p:outputLabel for="nivel" value="Nivel:" />
+			<p:selectOneMenu id="nivel" value="#{cursoFaces.nivelbean}"
+				style="width:125px" converter="#{nivelConverter}">
+				<f:selectItems value="#{cursoFaces.nivelLista}" var="nivelbean"
+					itemLabel="#{nivelbean.nombre_nivel}" itemValue="#{nivelbean}" />
+			</p:selectOneMenu>
+
+			<p:outputLabel for="horas" value="Numero de horas:"></p:outputLabel>
+			<p:inputText id="horas" value="#{cursoFaces.cursobean.horas}"></p:inputText>
+		</p:panelGrid>
+		<p:commandButton value="Insertar" action="#{cursoFaces.insert}" onclick="dlg.hide()" update=":tablacursos" ></p:commandButton>
+	</h:form>
+</p:dialog>
+
+
+
 
 </html>
