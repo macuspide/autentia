@@ -13,29 +13,22 @@
 		<p:outputLabel value="Activo:"></p:outputLabel>
 		<p:selectBooleanCheckbox value="#{cursoFaces.cursobean.activo}"></p:selectBooleanCheckbox>
 
-
-
 		<p:outputLabel for="titulo" value="Titulo:"></p:outputLabel>
 		<p:inputText id="titulo" value="#{cursoFaces.cursobean.titulo}"></p:inputText>
-
 
 		<p:outputLabel for="profesor" value="Profesor:" />
 		<p:selectOneMenu id="profesor" value="#{cursoFaces.profesorbean}"
 			style="width:125px" converter="#{profeConverter}">
-			<f:selectItems value="#{cursoFaces.profesorLista}" var="profesorbean" itemLabel="#{profesorbean.nombre_profe}" itemValue="#{profesorbean}" />
+			<f:selectItems value="#{cursoFaces.profesorLista}" var="profesorbean"
+				itemLabel="#{profesorbean.nombre_profe}" itemValue="#{profesorbean}" />
 		</p:selectOneMenu>
-
 
 		<p:outputLabel for="nivel" value="Nivel:" />
 		<p:selectOneMenu id="nivel" value="#{cursoFaces.nivelbean}"
 			style="width:125px" converter="#{nivelConverter}">
-			<f:selectItems value="#{cursoFaces.nivelesLista}" var="nivelbean" itemLabel="#{nivelbean.nombre_nivel}" itemValue="#{nivelbean}" />
+			<f:selectItems value="#{cursoFaces.nivelLista}" var="nivelbean"
+				itemLabel="#{nivelbean.nombre_nivel}" itemValue="#{nivelbean}" />
 		</p:selectOneMenu>
-
-
-
-
-
 
 		<p:outputLabel for="horas" value="Numero de horas:"></p:outputLabel>
 		<p:inputText id="horas" value="#{cursoFaces.cursobean.horas}"></p:inputText>
@@ -46,14 +39,21 @@
 
 
 
-	<p:dialog header="Values" modal="true" showEffect="bounce"
+	<p:dialog header="Insertado curso:" modal="true" showEffect="bounce"
 		widgetVar="dlg" resizable="false">
 		<p:panelGrid columns="2" id="display" columnClasses="label,value">
 
-			<h:outputText value="Profesor:" />
-			<h:outputText value="#{cursoFaces.profesorbean.nombre_profe}" />
-			<h:outputText value="Titulo:" />
+			<h:outputText value="Activo" />
+			<h:outputText value="Si" rendered="#{cursoFaces.cursobean.activo == true}"  />
+			<h:outputText value="No" rendered="#{cursoFaces.cursobean.activo == false}"  />
+			<h:outputText value="Titulo" />
 			<h:outputText value="#{cursoFaces.cursobean.titulo}" />
+			<h:outputText value="Profesor" />
+			<h:outputText value="#{cursoFaces.profesorbean.nombre_profe}" />
+			<h:outputText value="Nivel" />
+			<h:outputText value="#{cursoFaces.nivelbean.nombre_nivel}" />
+			<h:outputText value="Horas" />
+			<h:outputText value="#{cursoFaces.cursobean.horas}" />
 		</p:panelGrid>
 	</p:dialog>
 </h:form>

@@ -24,7 +24,7 @@ public class NivelConverter implements Converter {
 		
 		if (value != "") {
 
-			NivelBean nivelbean = nivelservice.getNivelPorId(Integer.parseInt(value));
+			NivelBean nivelbean = nivelservice.getNivel(Integer.parseInt(value));
 
 			return nivelbean;
 		}

@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.prueba.beans.CursoBean;
+import com.prueba.beans.NivelBean;
 import com.prueba.beans.ProfesorBean;
 import com.prueba.services.ICursoService;
+import com.prueba.services.INivelService;
 import com.prueba.services.IProfesorService;
 import com.prueba.controllers.ProfesorFaces;
 
@@ -26,6 +28,9 @@ public class CursoFaces implements Serializable{
 	@ManagedProperty("#{cursoservice}")
 	@Autowired
 	private ICursoService cursoservice;
+	
+	private CursoBean cursobean=new CursoBean();
+	private List<CursoBean> cursosLista;
 
 	@ManagedProperty("#{profesorservice}")
 	@Autowired
@@ -34,9 +39,44 @@ public class CursoFaces implements Serializable{
 	private ProfesorBean profesorbean;
 	private List<ProfesorBean> profesorLista;
 	
-	private CursoBean cursobean=new CursoBean();
-	private List<CursoBean> cursosLista;
+	@ManagedProperty("#{nivelservice}")
+	@Autowired
+	private INivelService nivelservice;
 	
+	private NivelBean nivelbean;
+	private List<NivelBean> nivelLista;
+	
+
+	
+	
+	
+	
+	
+	
+
+	public INivelService getNivelservice() {
+		return nivelservice;
+	}
+
+	public void setNivelservice(INivelService nivelservice) {
+		this.nivelservice = nivelservice;
+	}
+
+	public NivelBean getNivelbean() {
+		return nivelbean;
+	}
+
+	public void setNivelbean(NivelBean nivelbean) {
+		this.nivelbean = nivelbean;
+	}
+
+	public List<NivelBean> getNivelLista() {
+		return nivelLista;
+	}
+
+	public void setNivelLista(List<NivelBean> nivelLista) {
+		this.nivelLista = nivelLista;
+	}
 	
 	
 	
@@ -93,14 +133,15 @@ public class CursoFaces implements Serializable{
 	public void setCursobean(CursoBean cursobean) {
 		this.cursobean = cursobean;
 	}
-
-	public String selectTitulo() {
-		String titulo = cursoservice.selectTitulo(20);
-
-		return titulo;
+	
+	public List<CursoBean> getAll() {
+		
+		return cursosLista;
 	}
 
 	public void insert() {
+		cursobean.setNivelbean(nivelbean);
+		cursobean.setId_nivel(nivelbean.getId_nivel());
 		cursobean.setProfesorBean(profesorbean);
 		cursobean.setId_profesor(profesorbean.getId_profesor());
 		this.cursoservice.insert(cursobean);
@@ -108,14 +149,12 @@ public class CursoFaces implements Serializable{
 
 	@PostConstruct
 	public void init() {
+		nivelLista = nivelservice.getAllNiveles();
 		profesorLista = profesorservice.getAll();
 		cursosLista = cursoservice.getAll();
 	}
 
-	public List<CursoBean> getAll() {
-		
-		return cursosLista;
-	}
+
 	
 	
 
