@@ -1,8 +1,21 @@
 .highlight1{
-	background: #9CA796;
-	color: white;
+	background: #fff;
 }
 
 .highlight2{
 	background: #A7DFA7;
 }
+
+.verdeClaro{
+	background-color: #A7DFA7 !important;
+}
+/*
+.ui-selectonemenu .ui-selectonemenu-label {
+    background: #A7DFA7 !important;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-list {
+    background: #A7DFA7 !important;
+}
+
+*/

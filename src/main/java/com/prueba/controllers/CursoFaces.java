@@ -1,6 +1,7 @@
 package com.prueba.controllers;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -115,6 +116,7 @@ public class CursoFaces implements Serializable{
 
 	
 	public List<CursoBean> getCursosLista() {
+		//cursosLista = cursoservice.getAll(); //CON ESTA LINEA NO VA EL SORT
 		return cursosLista;
 	}
 
@@ -145,6 +147,8 @@ public class CursoFaces implements Serializable{
 		cursobean.setProfesorBean(profesorbean);
 		cursobean.setId_profesor(profesorbean.getId_profesor());
 		this.cursoservice.insert(cursobean);
+		cursosLista.add(cursobean);
+		cursobean = new CursoBean();
 	}
 
 	@PostConstruct

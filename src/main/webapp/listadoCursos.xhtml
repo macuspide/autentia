@@ -44,14 +44,11 @@
 
 <p:dialog header="Insertar curso:" 
 	widgetVar="dlg" resizable="false">
-	<h:form>
+	<h:form  styleClass="hola">
 		<p:growl id="messages"></p:growl>
 		<p:panelGrid columns="2">
 			<p:outputLabel value="Activo:"></p:outputLabel>
-			<p:selectBooleanCheckbox value="#{cursoFaces.cursobean.activo}"></p:selectBooleanCheckbox>
-
-			<p:outputLabel for="titulo" value="Titulo:"></p:outputLabel>
-			<p:inputText id="titulo" value="#{cursoFaces.cursobean.titulo}"></p:inputText>
+			<p:selectBooleanCheckbox value="#{cursoFaces.cursobean.activo}" styleClass="verdeClaro" ></p:selectBooleanCheckbox>
 
 			<p:outputLabel for="profesor" value="Profesor:" />
 			<p:selectOneMenu id="profesor" value="#{cursoFaces.profesorbean}"
@@ -61,6 +58,9 @@
 					itemValue="#{profesorbean}" />
 			</p:selectOneMenu>
 
+			<p:outputLabel for="titulo" value="Titulo:"></p:outputLabel>
+			<p:inputText id="titulo" value="#{cursoFaces.cursobean.titulo}" styleClass="verdeClaro" ></p:inputText>
+
 			<p:outputLabel for="nivel" value="Nivel:" />
 			<p:selectOneMenu id="nivel" value="#{cursoFaces.nivelbean}"
 				style="width:125px" converter="#{nivelConverter}">
@@ -69,7 +69,7 @@
 			</p:selectOneMenu>
 
 			<p:outputLabel for="horas" value="Numero de horas:"></p:outputLabel>
-			<p:inputText id="horas" value="#{cursoFaces.cursobean.horas}"></p:inputText>
+			<p:inputText id="horas" value="#{cursoFaces.cursobean.horas}" styleClass="verdeClaro"></p:inputText>
 		</p:panelGrid>
 		<p:commandButton value="Insertar" action="#{cursoFaces.insert}" onclick="dlg.hide()" update=":tablacursos" ></p:commandButton>
 	</h:form>
