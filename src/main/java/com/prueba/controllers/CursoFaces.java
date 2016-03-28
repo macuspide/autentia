@@ -155,7 +155,7 @@ public class CursoFaces implements Serializable{
 	public void init() {
 		nivelLista = nivelservice.getAllNiveles();
 		profesorLista = profesorservice.getAll();
-		cursosLista = cursoservice.getAll();
+		cursosLista = cursoservice.getAllActivos();//modificado
 	}
 
 

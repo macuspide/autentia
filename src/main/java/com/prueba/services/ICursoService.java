@@ -13,4 +13,5 @@ public interface ICursoService {
 	List<CursoBean> getAll();
 	void insert(CursoBean curso);
 	String selectTitulo(int horas);
+	List<CursoBean> getAllActivos();
 }

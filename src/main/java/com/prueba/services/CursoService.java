@@ -42,7 +42,15 @@ public class CursoService implements ICursoService{
 		}
 		return beans;
 	}
-
+	
+	public List<CursoBean> getAllActivos(){
+		List<CursoBean> beans=cursoMapper.getAllActivos();
+		if(beans==null){
+			throw new RuntimeException("Error al ejecutar la consulta");
+		}
+		return beans;
+	}
+	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void insert(CursoBean cursobean){
 		cursoMapper.insert(cursobean);

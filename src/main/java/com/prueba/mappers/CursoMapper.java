@@ -33,6 +33,20 @@ public interface CursoMapper {
 	@Options(useCache=true)
 	List<CursoBean> getAll();
 
+	
+	@Select("SELECT * FROM cursos where activo = true")
+	@Results(value ={
+        @Result(property = "id_curso", column = "id_curso", id = true),
+        @Result(property = "titulo", column = "titulo"),
+        @Result(property = "nivelbean", column = "id_nivel", javaType=NivelBean.class, one=@One(select="com.prueba.mappers.NivelMapper.getNivel")),
+        @Result(property = "horas", column = "horas"),
+        @Result(property = "activo", column = "activo"),
+        @Result(property = "profesorbean", column = "id_profesor", javaType=ProfesorBean.class, one=@One(select="getProfesorPorId"))
+        //@Result(property = "id_profesor", column = "id_profesor", javaType=ProfesorBean.class, one=@One(select="com.prueba.services.IProfesorService.getProfesorPorId"))
+      })
+	@Options(useCache=true)
+	List<CursoBean> getAllActivos();
+	
 	@Insert("Insert into cursos (titulo, id_nivel, horas, activo, id_profesor) values (#{titulo},#{id_nivel},#{horas},#{activo},#{id_profesor})")
 	@Options(useGeneratedKeys = true, keyProperty = "id_curso", flushCache=true, keyColumn = "id_curso")
 	void insert(CursoBean cursobean);
