@@ -23,10 +23,12 @@ import com.prueba.services.ProfesorService;
 @SessionScoped
 public class ProfesorFaces implements Serializable{
 	
-	
+
+	private static final long serialVersionUID = 1L;
+
 	@ManagedProperty("#{profesorservice}")
 	@Autowired
-	private IProfesorService profesorservice;
+	private transient IProfesorService profesorservice;
 	
 	private ProfesorBean profesorbean;
 	private List<ProfesorBean> profesorLista;
@@ -58,17 +60,12 @@ public class ProfesorFaces implements Serializable{
 		profesorLista = profesorservice.getAll();
 	}
 	public String selectNombre(){
-		String nombre_profe=profesorservice.selectNombre(1);
-		
-		return nombre_profe;
+		return profesorservice.selectNombre(1);
+
 	}
-	public String insert(){
+	public void insert(){
 		this.profesorservice.insert(profesorbean);
-		/*
-        FacesContext.getCurrentInstance().addMessage(null, 
-                new FacesMessage("El profesor "+this.profesorbean.getNombre_profe()+" se ha creado correctamente"));
-        */
-        return "";
+
 	}
 
 }

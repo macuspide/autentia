@@ -16,7 +16,7 @@ public class CursoBean implements Serializable {
 	private ProfesorBean profesorbean;
 	
 	public CursoBean(){
-		
+		//Constructor por defecto
 	}
 	
 	public CursoBean(String titulo, int id_nivel,NivelBean nivelbean, int horas, boolean activo, int id_profesor,ProfesorBean profesorbean) {
@@ -95,7 +95,7 @@ public class CursoBean implements Serializable {
 	
     @Override
     public String toString() {
-        return String.format("CursoBean", id_curso, titulo, nivelbean, horas, activo, profesorbean);
+        return id_curso+","+ titulo+","+ nivelbean+","+ horas+","+ activo+","+ profesorbean;
     }
 	
 }

@@ -1,6 +1,5 @@
 package com.prueba.converters;
 
-import javax.faces.bean.ManagedProperty;
 import javax.faces.component.UIComponent;
 import com.prueba.services.IProfesorService;
 import javax.faces.context.FacesContext;
@@ -27,7 +26,7 @@ public class ProfeConverter implements Converter {
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
 		
-		if (value != "") {
+		if (!value.equals("")) {
 
 			ProfesorBean profesorbean = profesorservice.getProfesorPorId(Integer.parseInt(value));
 

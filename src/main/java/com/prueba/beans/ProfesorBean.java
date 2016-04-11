@@ -10,6 +10,7 @@ public class ProfesorBean implements Serializable {
 	private String nombre_profe;
 
 	public ProfesorBean() {
+		//Constructor por defecto
 	}
 
 	public ProfesorBean(int id_profesor, String nombre_profe) {
@@ -40,7 +41,7 @@ public class ProfesorBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("ProfesorBean", id_profesor, nombre_profe);
+		return id_profesor+","+ nombre_profe;
 	}
 
 	@Override
@@ -58,7 +59,7 @@ public class ProfesorBean implements Serializable {
 	
 	@Override
 	public int hashCode(){
-	    return (int) id_profesor;
+	    return id_profesor;
 	  }
 
 }

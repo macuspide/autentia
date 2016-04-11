@@ -23,7 +23,7 @@ public class NivelFaces implements Serializable{
 
 	@ManagedProperty("#{nivelservice}")
 	@Autowired
-	private INivelService nivelservice;
+	private transient INivelService nivelservice;
 	
 	private NivelBean nivelbean;
 	private List<NivelBean> nivelesLista;

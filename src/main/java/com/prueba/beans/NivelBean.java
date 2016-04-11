@@ -1,11 +1,14 @@
 package com.prueba.beans;
 
-public class NivelBean {
+import java.io.Serializable;
+
+public class NivelBean implements Serializable {
 	int id_nivel;
 	String nombre_nivel;
 	
+	
 	public NivelBean() {
-
+		//Constructor por defecto
 	}	
 	
 	public NivelBean(int id_nivel, String nombre_nivel) {
@@ -28,7 +31,8 @@ public class NivelBean {
 	
     @Override
     public String toString() {
-        return String.format("NivelBean", id_nivel, nombre_nivel);
+
+    	return id_nivel +","+ nombre_nivel;
     }
     
 	@Override
@@ -42,6 +46,11 @@ public class NivelBean {
 			return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public int hashCode(){
+		return id_nivel;
 	}
 	
 	

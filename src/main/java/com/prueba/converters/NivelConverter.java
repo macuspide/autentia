@@ -22,7 +22,7 @@ public class NivelConverter implements Converter {
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
 		
-		if (value != "") {
+		if (!value.equals("")) {
 
 			NivelBean nivelbean = nivelservice.getNivel(Integer.parseInt(value));
 

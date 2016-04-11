@@ -28,32 +28,24 @@ public class CursoFaces implements Serializable{
 
 	@ManagedProperty("#{cursoservice}")
 	@Autowired
-	private ICursoService cursoservice;
+	private transient ICursoService cursoservice;
 	
 	private CursoBean cursobean=new CursoBean();
 	private List<CursoBean> cursosLista;
 
 	@ManagedProperty("#{profesorservice}")
 	@Autowired
-	private IProfesorService profesorservice;
+	private transient IProfesorService profesorservice;
 	
 	private ProfesorBean profesorbean;
 	private List<ProfesorBean> profesorLista;
 	
 	@ManagedProperty("#{nivelservice}")
 	@Autowired
-	private INivelService nivelservice;
+	private transient INivelService nivelservice;
 	
-	private NivelBean nivelbean;
-	private List<NivelBean> nivelLista;
-	
-
-	
-	
-	
-	
-	
-	
+	private transient NivelBean nivelbean;
+	private transient List<NivelBean> nivelLista;
 
 	public INivelService getNivelservice() {
 		return nivelservice;
@@ -78,11 +70,6 @@ public class CursoFaces implements Serializable{
 	public void setNivelLista(List<NivelBean> nivelLista) {
 		this.nivelLista = nivelLista;
 	}
-	
-	
-	
-	
-	
 
 	public List<ProfesorBean> getProfesorLista() {
 		return profesorLista;
@@ -106,17 +93,9 @@ public class CursoFaces implements Serializable{
 		this.profesorbean = profesorbean;
 	}
 
-	
-	
-	
-	
-	
-	
-	
 
-	
 	public List<CursoBean> getCursosLista() {
-		//cursosLista = cursoservice.getAll(); //CON ESTA LINEA NO VA EL SORT
+
 		return cursosLista;
 	}
 
@@ -158,8 +137,5 @@ public class CursoFaces implements Serializable{
 		cursosLista = cursoservice.getAllActivos();//modificado
 	}
 
-
-	
-	
 
 }
