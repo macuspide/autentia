@@ -22,22 +22,24 @@ public class NivelFaces implements Serializable{
 	private static final long serialVersionUID = -8646444419515398178L;
 
 	@ManagedProperty("#{nivelservice}")
-	@Autowired
 	private transient INivelService nivelservice;
 	
 	private NivelBean nivelbean;
 	private List<NivelBean> nivelesLista;
 	
-	
+	@Autowired
+	public NivelFaces(INivelService nivelservice){
+		this.nivelservice=nivelservice;
+	}
 	
 	public INivelService getNivelservice() {
 		return nivelservice;
 	}
-
+/*
 	public void setNivelservice(INivelService nivelservice) {
 		this.nivelservice = nivelservice;
 	}
-
+*/
 	public NivelBean getNivelbean() {
 		return nivelbean;
 	}
