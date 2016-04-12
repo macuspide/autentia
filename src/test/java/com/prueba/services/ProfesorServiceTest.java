@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 import com.prueba.beans.ProfesorBean;
 import com.prueba.mappers.ProfesorMapper;
 
-public class ProfesorServiceTest1 {
+public class ProfesorServiceTest {
 	
 	ProfesorService sut;
 	

@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 import com.prueba.beans.NivelBean;
 import com.prueba.mappers.NivelMapper;
 
-public class NivelServiceTest1 {
+public class NivelServiceTest {
 	
 	NivelService sut;
 	

@@ -18,7 +18,7 @@ import com.prueba.beans.NivelBean;
 import com.prueba.beans.ProfesorBean;
 import com.prueba.mappers.CursoMapper;
 
-public class CursoServiceTest1 {
+public class CursoServiceTest {
 	
 	CursoService sut;
 	
