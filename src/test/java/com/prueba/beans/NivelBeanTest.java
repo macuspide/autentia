@@ -41,4 +41,11 @@ public class NivelBeanTest {
 		assertEquals(n.getId_nivel(), 2);
 		
 	}
+	
+	@Test
+	public void shouldReturnString(){
+		
+		assertEquals((n.toString()).getClass(), String.class);
+		
+	}
 }

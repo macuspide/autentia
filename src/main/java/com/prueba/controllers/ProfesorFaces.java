@@ -27,13 +27,16 @@ public class ProfesorFaces implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@ManagedProperty("#{profesorservice}")
-	@Autowired
 	private transient IProfesorService profesorservice;
 	
 	private ProfesorBean profesorbean;
 	private List<ProfesorBean> profesorLista;
 	
-
+	@Autowired
+	public ProfesorFaces(IProfesorService profesorservice){
+		this.profesorservice=profesorservice;
+	}
+	
 	public List<ProfesorBean> getProfesorLista() {
 		return profesorLista;
 	}

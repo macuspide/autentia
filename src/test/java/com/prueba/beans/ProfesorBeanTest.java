@@ -41,4 +41,11 @@ public class ProfesorBeanTest {
 		assertEquals(p.getId_profesor(), 2);
 		
 	}
+	
+	@Test
+	public void shouldReturnString(){
+		
+		assertEquals((p.toString()).getClass(), String.class);
+		
+	}
 }

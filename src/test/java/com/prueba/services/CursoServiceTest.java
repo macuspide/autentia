@@ -51,13 +51,10 @@ public class CursoServiceTest {
 		verify(cursoMapper, Mockito.never()).getAllActivos();
 	}
 	
-	@Test
+	@Test(expected=RuntimeException.class)
 	public void shouldThrowRuntimeExceptionWhenMapperSelectTituloReturnsNull(){
 		
-		when(cursoMapper.selectTitulo(N_HORAS)).thenReturn(null);
-		
-		expectedException.expect(RuntimeException.class);
-		expectedException.expectMessage("Error al ejecutar la consulta");
+		when(cursoMapper.selectTitulo(N_HORAS)).thenReturn(null);	
 		sut.selectTitulo(N_HORAS);
 	}
 	

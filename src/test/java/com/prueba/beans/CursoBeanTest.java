@@ -43,6 +43,14 @@ public class CursoBeanTest {
 	}
 	
 	@Test
+	public void shouldReturnIdCursoSetted(){
+		
+		c.setId_curso(2);
+		assertEquals(c.getId_curso(), 2);
+		
+	}
+	
+	@Test
 	public void shouldReturnNivelBeanSetted(){
 		NivelBean nb = new NivelBean();
 		c.setNivelbean(nb);
@@ -79,6 +87,13 @@ public class CursoBeanTest {
 		
 		c.setActivo(false);
 		assertEquals(c.isActivo(), false);
+		
+	}
+	
+	@Test
+	public void shouldReturnString(){
+		
+		assertEquals((c.toString()).getClass(), String.class);
 		
 	}
 

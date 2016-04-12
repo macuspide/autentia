@@ -27,25 +27,29 @@ public class CursoFaces implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@ManagedProperty("#{cursoservice}")
-	@Autowired
 	private transient ICursoService cursoservice;
 	
 	private CursoBean cursobean=new CursoBean();
 	private List<CursoBean> cursosLista;
 
 	@ManagedProperty("#{profesorservice}")
-	@Autowired
 	private transient IProfesorService profesorservice;
 	
 	private ProfesorBean profesorbean;
 	private List<ProfesorBean> profesorLista;
 	
 	@ManagedProperty("#{nivelservice}")
-	@Autowired
 	private transient INivelService nivelservice;
 	
 	private transient NivelBean nivelbean;
 	private transient List<NivelBean> nivelLista;
+	
+	@Autowired
+	public CursoFaces(ICursoService cursoservice, IProfesorService profesorservice, INivelService nivelservice){
+		this.cursoservice=cursoservice;
+		this.profesorservice=profesorservice;
+		this.nivelservice=nivelservice;
+	}
 
 	public INivelService getNivelservice() {
 		return nivelservice;

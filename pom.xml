@@ -9,7 +9,7 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<!--  <org.springframework-version>3.1.1.RELEASE</org.springframework-version> -->
+		<!-- <org.springframework-version>3.1.1.RELEASE</org.springframework-version> -->
 		<org.springframework-version>4.1.6.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
@@ -19,7 +19,7 @@
 
 		<sonar.jacoco.itreportpath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itreportpath>
 		<sonar.jacoco.utreportpath>${project.build.directory}/jacoco.exec</sonar.jacoco.utreportpath>
-		<jacoco.version>0.7.1.201405082137</jacoco.version>
+		<jacoco.version>0.7.2.201409121644</jacoco.version>
 
 	</properties>
 	<repositories>
@@ -194,14 +194,24 @@
 	</dependencies>
 	<build>
 		<plugins>
-		<plugin>
-				
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-surefire-plugin</artifactId>
-  <version>2.19.1</version>
-
-		</plugin>
-		 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.15</version>
+				<configuration>
+					<!-- Sets the VM argument line used when unit tests are run. -->
+					<argLine>${surefireArgLine}</argLine>
+					<!-- Skips unit tests if the value of skip.unit.tests property is true -->
+					<skipTests>${skip.unit.tests}</skipTests>
+					<!-- Excludes integration tests when unit tests are run. -->
+					<excludes>
+						<exclude>**/*IT.java</exclude>
+					</excludes>
+					<systemPropertyVariables>
+						<env>dev</env>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
@@ -216,7 +226,7 @@
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
-			 
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -237,12 +247,12 @@
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.7.2.201409121644</version>
-				
+
 				<executions>
 					<execution>
 						<id>pre-unit-test</id>
@@ -270,9 +280,55 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>all-test-dev</id>
+			<properties>
+				<!-- Usado para encontrar el fichero de configuracion especifico para 
+					el perfil de test de integracion -->
+				<build.profile.id>dev</build.profile.id>
+				<!-- Solo se ejecutaran las pruebas de integracion -->
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>false</skip.unit.tests>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.15</version>
+						<executions>
+							<!-- Se especifica que tanto integration-test como verify son ejecutados -->
+							<execution>
+								<id>all-test-dev</id>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+								<configuration>
+									<!-- se salta los test de integracion sin la propiedad skip.integration.tests 
+										esta a true -->
+									<skipTests>${skip.integration.tests}</skipTests>
+									<systemPropertyVariables>
+										<env>dev</env>
+									</systemPropertyVariables>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<reporting>
 		<plugins>
 			<plugin>

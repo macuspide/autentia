@@ -17,7 +17,7 @@ import com.prueba.beans.NivelBean;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:root-context-test.xml"})
-public class NivelServiceITest {
+public class NivelServiceIT {
 
 	@Autowired
 	NivelService sut;
